@@ -1,4 +1,4 @@
-{-# LANGUAGE DeriveGeneric #-}
+{-# LANGUAGE DeriveGeneric, OverloadedStrings #-}
 
 module Blockchain.SHA (
   SHA(..),
@@ -25,6 +25,7 @@ import GHC.Generics
 newtype SHA = SHA Word256 deriving (Show, Eq, Read, Generic)
 
 instance Format SHA where
+  format x | x == hash "" = CL.yellow "<blank>"
   format (SHA x) = CL.yellow $ padZeros 64 $ showHex x ""
 
 instance Binary SHA where
