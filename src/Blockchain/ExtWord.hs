@@ -18,6 +18,8 @@ module Blockchain.ExtWord (
 
 import Data.Binary
 import Data.Bits
+import qualified Data.ByteString as B
+import qualified Data.ByteString.Lazy as BL
 import qualified Data.ByteString.Lazy.Char8 as BLC
 import Network.Haskoin.Internals (Word128, Word160, Word256, Word512)
 
@@ -35,9 +37,9 @@ instance Ix Word256 where
     inRange _ _ = False
 
 instance RLPSerializable Word512 where
-    rlpEncode val = RLPString $ BLC.unpack $ encode val
+    rlpEncode val = RLPString $ BL.toStrict $ encode val
 
-    rlpDecode (RLPString s) | length s == 64 = decode $ BLC.pack s
+    rlpDecode (RLPString s) | B.length s == 64 = decode $ BL.fromStrict s
     rlpDecode x = error ("Missing case in rlp2Word512: " ++ show x)
 
 word64ToBytes::Word64->[Word8]
