@@ -23,7 +23,7 @@ import Blockchain.Util
 
 import GHC.Generics
 
-newtype SHA = SHA Word256 deriving (Show, Eq, Read, Generic)
+newtype SHA = SHA Word256 deriving (Show, Eq, Ord, Read, Generic)
 
 instance Format SHA where
   format x | x == hash "" = CL.yellow "<blank>"
