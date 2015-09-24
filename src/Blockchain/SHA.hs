@@ -7,12 +7,14 @@ module Blockchain.SHA (
 
 import Control.Monad
 import qualified Crypto.Hash.SHA3 as C
+import qualified Data.Aeson as JSON
 import Data.Binary
 import qualified Data.ByteString.Base16 as B16
 import qualified Data.ByteString as B
 import qualified Data.ByteString.Char8 as BC
 import qualified Data.ByteString.Lazy as BL
 import qualified Data.ByteString.Lazy.Char8 as BLC
+import qualified Data.Text as T
 import Numeric
 
 import qualified Blockchain.Colors as CL
@@ -42,6 +44,10 @@ instance RLPSerializable SHA where
   rlpDecode x = error ("Missing case in rlpDecode for SHA: " ++ show x)
   --rlpEncode (SHA 0) = RLPNumber 0
   rlpEncode (SHA val) = RLPString $ fst $ B16.decode $ BC.pack $ padZeros 64 $ showHex val ""
+
+instance JSON.FromJSON SHA where
+instance JSON.ToJSON SHA where
+
 
 hash::BC.ByteString->SHA
 hash = SHA . fromIntegral . byteString2Integer . C.hash 256
