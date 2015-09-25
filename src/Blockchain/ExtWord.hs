@@ -20,7 +20,6 @@ import Data.Binary
 import Data.Bits
 import qualified Data.ByteString as B
 import qualified Data.ByteString.Lazy as BL
-import qualified Data.ByteString.Lazy.Char8 as BLC
 import Network.Haskoin.Internals (Word128, Word160, Word256, Word512)
 
 import Data.Ix

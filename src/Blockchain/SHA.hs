@@ -13,8 +13,6 @@ import qualified Data.ByteString.Base16 as B16
 import qualified Data.ByteString as B
 import qualified Data.ByteString.Char8 as BC
 import qualified Data.ByteString.Lazy as BL
-import qualified Data.ByteString.Lazy.Char8 as BLC
-import qualified Data.Text as T
 import Numeric
 
 import qualified Blockchain.Colors as CL
