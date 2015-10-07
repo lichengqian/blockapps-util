@@ -2,7 +2,6 @@
 
 module Blockchain.MiscJSON where
 
-import Control.Applicative
 import Data.Aeson
 import qualified Data.ByteString as B
 import qualified Data.ByteString.Base16 as B16

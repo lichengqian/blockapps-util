@@ -5,7 +5,6 @@ import Data.Bits
 import qualified Data.ByteString as B
 import qualified Data.NibbleString as N
 import Data.ByteString.Internal
-import Data.Functor
 import Data.Char
 import Data.List
 import Data.Word
