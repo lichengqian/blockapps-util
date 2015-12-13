@@ -71,7 +71,8 @@ word256ToBytes word = map (fromIntegral . (word `shiftR`)) [256-8, 256-16..0]
 instance RLPSerializable Word16 where
     rlpEncode val = RLPString $ BL.toStrict $ encode val
 
-    rlpDecode (RLPString s) | B.length s == 2 = decode $ BL.fromStrict s
+    rlpDecode (RLPString s) | B.null s = 0
+    rlpDecode (RLPString s) | B.length s <= 2 = decode $ BL.fromStrict s
     rlpDecode x = error ("Missing case in rlp2Word16: " ++ show x)
 
 
