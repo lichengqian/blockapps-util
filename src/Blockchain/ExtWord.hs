@@ -68,6 +68,21 @@ bytesToWord160 _ = error "bytesToWord128 was called with the wrong number of byt
 word256ToBytes::Word256->[Word8]
 word256ToBytes word = map (fromIntegral . (word `shiftR`)) [256-8, 256-16..0]
 
+instance RLPSerializable Word128 where
+    rlpEncode val = RLPString $ BL.toStrict $ encode val
+
+    rlpDecode (RLPString s) | B.null s = 0
+    rlpDecode (RLPString s) | B.length s <= 16 = decode $ BL.fromStrict s
+    rlpDecode x = error ("Missing case in rlp2Word128: " ++ show x)
+
+
+instance RLPSerializable Word32 where
+    rlpEncode val = RLPString $ BL.toStrict $ encode val
+
+    rlpDecode (RLPString s) | B.null s = 0
+    rlpDecode (RLPString s) | B.length s <= 4 = decode $ BL.fromStrict s
+    rlpDecode x = error ("Missing case in rlp2Word32: " ++ show x)
+
 instance RLPSerializable Word16 where
     rlpEncode val = RLPString $ BL.toStrict $ encode val
 
