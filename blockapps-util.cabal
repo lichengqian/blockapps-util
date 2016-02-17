@@ -6,7 +6,7 @@ author:              jamshid
 maintainer:          j
 build-type:          Simple
 cabal-version:       >=1.10
-license:             Apache 2.0
+license:             Apache-2.0
 
 library
   exposed-modules:     Blockchain.Colors
