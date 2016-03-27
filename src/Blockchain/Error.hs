@@ -1,7 +1,6 @@
 
 module Blockchain.Error where
 
-import Control.Concurrent
 import System.Exit
 import System.IO
 import System.IO.Unsafe
