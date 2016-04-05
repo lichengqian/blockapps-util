@@ -80,3 +80,9 @@ safeDrop i s | i > fromIntegral (B.length s) = B.empty
 safeDrop i _ | i > 0x7fffffffffffffff = error "error in call to safeDrop: string too long"
 safeDrop i s = B.drop (fromIntegral i) s
 
+
+isContiguous::(Eq a, Num a)=>[a]->Bool
+isContiguous [] = True
+isContiguous [_] = True
+isContiguous (x:y:rest) | y == x + 1 = isContiguous $ y:rest
+isContiguous _ = False
