@@ -13,7 +13,9 @@ import qualified Data.ByteString.Base16 as B16
 import qualified Data.ByteString as B
 import qualified Data.ByteString.Char8 as BC
 import qualified Data.ByteString.Lazy as BL
+import qualified Data.Text as T
 import Numeric
+import Web.PathPieces
 
 import qualified Blockchain.Colors as CL
 import Blockchain.Data.RLP
@@ -46,6 +48,22 @@ instance RLPSerializable SHA where
 instance JSON.FromJSON SHA where
 instance JSON.ToJSON SHA where
 
+-- I think we want this first definition, but the API already uses the second one!
+-- Someday we should fix this, but it will probably change our external (API) behavior.
+{-
+instance PathPiece SHA where
+  toPathPiece (SHA x) = T.pack $ padZeros 64 $ showHex x ""
+  fromPathPiece t = Just (SHA wd160)
+    where
+      ((wd160, _):_) = readHex $ T.unpack $ t ::  [(Word256,String)]
+-}
+
+instance PathPiece SHA where
+  toPathPiece = T.pack . show
+  fromPathPiece t = 
+    case readHex $ T.unpack t of
+      [(x, "")] -> Just $ SHA x
+      _ -> Nothing
 
 hash::BC.ByteString->SHA
 hash = SHA . fromIntegral . byteString2Integer . C.hash 256

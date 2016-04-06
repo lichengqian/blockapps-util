@@ -25,6 +25,7 @@ library
                      , ethereum-rlp
                      , haskoin
                      , nibblestring
+                     , path-pieces
                      , text
                      , unix
   hs-source-dirs:      src
