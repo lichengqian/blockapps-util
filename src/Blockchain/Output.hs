@@ -6,6 +6,7 @@ import qualified Data.ByteString.Char8 as BC
 import System.Log.FastLogger
 
 printLogMsg::Loc->LogSource->LogLevel->LogStr->IO ()
-printLogMsg loc logSource level msg = do
+--printLogMsg loc logSource level msg = do
+printLogMsg _ _ _ msg = do
     putStrLn $ BC.unpack $ fromLogStr msg
 
