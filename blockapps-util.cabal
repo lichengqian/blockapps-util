@@ -25,10 +25,12 @@ library
                      , cryptohash
                      , ethereum-rlp
                      , fast-logger
+                     , global-lock
                      , haskoin
                      , monad-logger
                      , nibblestring
                      , path-pieces
+                     , stm
                      , text
                      , unix
   hs-source-dirs:      src
