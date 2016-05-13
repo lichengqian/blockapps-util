@@ -20,12 +20,23 @@ import Data.Binary
 import Data.Bits
 import qualified Data.ByteString as B
 import qualified Data.ByteString.Lazy as BL
-import Network.Haskoin.Internals (Word128, Word160, Word256, Word512)
 
 import Data.Ix
 
 import Blockchain.Data.RLP
 
+-- | Data type representing a 512 bit unsigned integer.
+-- It is implemented as an Integer modulo 2^512.
+type Word512 = BigWord Mod512
+-- | Data type representing a 256 bit unsigned integer.
+-- It is implemented as an Integer modulo 2^256.
+type Word256 = BigWord Mod256
+-- | Data type representing a 160 bit unsigned integer.
+-- It is implemented as an Integer modulo 2^160.
+type Word160 = BigWord Mod160
+-- | Data type representing a 128 bit unsigned integer.
+-- It is implemented as an Integer modulo 2^128.
+type Word128 = BigWord Mod128
 
 instance Ix Word256 where
     range (x, y) | x == y = [x]
