@@ -1,4 +1,5 @@
 {-# LANGUAGE TypeSynonymInstances, FlexibleInstances #-}
+{-# LANGUAGE EmptyDataDecls #-}
 {-# OPTIONS_GHC -fno-warn-orphans #-}
 
 module Blockchain.ExtWord (
@@ -24,6 +25,15 @@ import qualified Data.ByteString.Lazy as BL
 import Data.Ix
 
 import Blockchain.Data.RLP
+
+data Mod512
+data Mod256 
+data Mod256Tx
+data Mod256Block
+data Mod160
+data Mod128
+data ModP
+data ModN
 
 newtype BigWord n = BigWord { getBigWordInteger :: Integer }
     deriving (Eq, Ord, Read, Show)
