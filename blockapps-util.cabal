@@ -23,7 +23,6 @@ library
                      , bytestring
                      , cryptohash
                      , ethereum-rlp
-                     , haskoin
                      , nibblestring
                      , path-pieces
                      , text
