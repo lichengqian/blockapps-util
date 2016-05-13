@@ -25,6 +25,9 @@ import Data.Ix
 
 import Blockchain.Data.RLP
 
+newtype BigWord n = BigWord { getBigWordInteger :: Integer }
+    deriving (Eq, Ord, Read, Show)
+
 -- | Data type representing a 512 bit unsigned integer.
 -- It is implemented as an Integer modulo 2^512.
 type Word512 = BigWord Mod512
